@@ -1,5 +1,5 @@
-import { useState, MouseEvent } from "react";
-import Button from "./components/Button/Button";
+import { useState, MouseEvent } from 'react';
+import Button from './components/Button/Button';
 
 function App() {
 	const [counter, setCounter] = useState<number>(0);
@@ -11,7 +11,7 @@ function App() {
 
 	return (
 		<>
-			<Button onClick={addCounter}>{counter ? counter : "Счетичик"}</Button>
+			<Button onClick={addCounter}>{counter ? counter : 'Счетичик'}</Button>
 		</>
 	);
 }
