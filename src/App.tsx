@@ -4,7 +4,13 @@ import Button from "./components/Button/Button";
 function App() {
   return (
     <>
-      <Button>Вход</Button>
+      <Button
+        onClick={() => {
+          console.log("Клик по кнопке");
+        }}
+      >
+        Вход
+      </Button>
     </>
   );
 }
