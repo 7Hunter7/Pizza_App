@@ -1,16 +1,17 @@
-import "./App.css";
+import { useState, MouseEvent } from "react";
 import Button from "./components/Button/Button";
 
 function App() {
+  const [counter, setCounter] = useState<number>(0);
+
+  const addCounter = (e: MouseEvent) => {
+    console.log(e.target);
+    setCounter(counter + 1);
+  };
+
   return (
     <>
-      <Button
-        onClick={() => {
-          console.log("Клик по кнопке");
-        }}
-      >
-        Вход
-      </Button>
+      <Button onClick={addCounter}>{counter ? counter : "Счетичик"}</Button>
     </>
   );
 }
