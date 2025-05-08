@@ -11,7 +11,8 @@ function App() {
 
 	return (
 		<>
-			<Button onClick={addCounter}>{counter ? counter : 'Счетичик'}</Button>
+			<Button onClick={addCounter}>{counter ? counter : 'Счетичик 1'}</Button>
+			<Button appearence='big' onClick={addCounter}>{counter ? counter : 'Счетичик 2'}</Button>
 		</>
 	);
 }
