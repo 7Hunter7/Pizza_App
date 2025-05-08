@@ -1,4 +1,4 @@
-import styles from './Button.module.scss';
+import styles from './Button.module.css';
 import type { ButtonProps } from './Button.props';
 import cn from 'classnames';
 

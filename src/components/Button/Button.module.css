@@ -17,13 +17,13 @@
   background: var(--primary-hover-color);
 }
 
+
 .small {
   font-size: 1rem;
   padding: 0.6rem 1.6rem;
 }
-
 .big {
   font-size: 0.9rem;
   text-transform: uppercase;
   padding: 1.25rem 3.75rem;
-}/*# sourceMappingURL=Button.module.css.map */
+}
