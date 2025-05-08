@@ -1,0 +1,21 @@
+.button {
+  border-radius: 0.375rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: var(--background-color);
+  transition: background 0.3s ease-in-out transform 0.1s;
+}
+.button:active {
+  transform: scale(0.95);
+}
+
+.accent {
+  background: var(--primary-color);
+}
+.accent:hover {
+  background: var(--primary-hover-color);
+}/*# sourceMappingURL=Button.module.css.map */
