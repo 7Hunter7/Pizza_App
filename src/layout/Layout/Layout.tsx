@@ -1,9 +1,15 @@
-import { Link, Outlet } from 'react-router-dom';
-import styles from './Layout.module.css';
+import { useEffect } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-
+import styles from './Layout.module.scss';
+import cn from 'classnames';
 
 export function Layout() {
+  const location = useLocation();
+  
+  useEffect(() => {
+    console.log(location);
+  }, [location])
 	
 	return (
     <div className={styles.layout}>
@@ -14,7 +20,9 @@ export function Layout() {
           <div className={styles.email}>anton_ivanov95@mail.ru</div>
         </div>
         <div className={styles.menu}>
-          <Link to='/' className={styles.link}>
+          <Link to='/' className={cn(styles.link, {
+            [styles.active]: location.pathname === '/'
+          })}>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               width="32" 
@@ -25,7 +33,9 @@ export function Layout() {
             </svg>
             Меню
           </Link>
-          <Link to='/cart' className={styles.link}>
+          <Link to='/cart' className={cn(styles.link, {
+            [styles.active]: location.pathname === '/cart'
+          })}>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               width="32" 
