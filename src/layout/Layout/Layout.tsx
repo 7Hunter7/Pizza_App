@@ -1,16 +1,9 @@
-import { useEffect } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import styles from './Layout.module.scss';
 import cn from 'classnames';
 
 export function Layout() {
-  const location = useLocation();
-  
-  useEffect(() => {
-    console.log(location);
-  }, [location])
-	
 	return (
     <div className={styles.layout}>
       <div className={styles.sidebar}>
@@ -20,8 +13,8 @@ export function Layout() {
           <div className={styles.email}>anton_ivanov95@mail.ru</div>
         </div>
         <div className={styles.menu}>
-          <Link to='/' className={cn(styles.link, {
-            [styles.active]: location.pathname === '/'
+          <NavLink to='/' className={({isActive}) => cn(styles.link, {
+            [styles.active]: isActive
           })}>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -32,9 +25,9 @@ export function Layout() {
               <path  d="M9 20h11q.825 0 1.413-.587T22 18v-2H9zM2 8h5V4H4q-.825 0-1.412.588T2 6zm0 6h5v-4H2zm2 6h3v-4H2v2q0 .825.588 1.413T4 20m5-6h13v-4H9zm0-6h13V6q0-.825-.587-1.412T20 4H9z"/>
             </svg>
             Меню
-          </Link>
-          <Link to='/cart' className={cn(styles.link, {
-            [styles.active]: location.pathname === '/cart'
+          </NavLink>
+          <NavLink to='/cart' className={({isActive}) => cn(styles.link, {
+            [styles.active]: isActive
           })}>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -45,7 +38,7 @@ export function Layout() {
               <path d="M7 22q-.825 0-1.412-.587T5 20t.588-1.412T7 18t1.413.588T9 20t-.587 1.413T7 22m10 0q-.825 0-1.412-.587T15 20t.588-1.412T17 18t1.413.588T19 20t-.587 1.413T17 22M5.2 4h14.75q.575 0 .875.513t.025 1.037l-3.55 6.4q-.275.5-.737.775T15.55 13H8.1L7 15h11q.425 0 .713.288T19 16t-.288.713T18 17H7q-1.125 0-1.7-.987t-.05-1.963L6.6 11.6L3 4H2q-.425 0-.712-.288T1 3t.288-.712T2 2h1.625q.275 0 .525.15t.375.425z"/>
             </svg>
             Корзина
-          </Link>
+          </NavLink>
         </div>
         <Button className={styles.exit}>
           <svg 

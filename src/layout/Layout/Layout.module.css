@@ -79,5 +79,5 @@
   color: var(--primary-color);
 }
 .active svg {
-  fill: var(--primary-hover-color);
+  fill: var(--primary-color);
 }/*# sourceMappingURL=Layout.module.css.map */
