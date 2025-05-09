@@ -1,10 +1,13 @@
-import { forwardRef } from 'react';
+import type { HeadlingProps } from './Headling.props';
 import styles from './Headling.module.css';
+import cn from 'classnames';
 
-const Headling = forwardRef<HTMLElement>({className, ...props}, ref) {
+function Headling({children, className, ...props}: HeadlingProps) {
 	return (
-		<input ref={ref} className={className, styles['header']} {...props}/>
+		<h1  className={cn(className, styles['header'])} {...props}>
+			{ children }
+		</h1>
 	);
-});
+};
 
 export default Headling;
