@@ -7,7 +7,7 @@ export function Menu() {
 		<>
 			<div className={styles.head}>
       <Headling>Меню</Headling>
-      <Search/>
+      <Search placeholder='Введите блюдо или состав'/>
 			</div>
     </>
 	);
