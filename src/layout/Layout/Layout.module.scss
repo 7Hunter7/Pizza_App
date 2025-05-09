@@ -1,0 +1,81 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.875rem;
+  border-right: 1px solid var(--separator-color);
+}
+
+.user {
+margin-bottom: 2.875rem;
+  .avatar {
+    width: 6rem;
+    height: auto;
+    margin-bottom: 1.25rem;
+    filter: drop-shadow(0px 0.5rem 2.5rem rgba(255, 197, 41, 0.25));
+  }
+  .name {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .email{
+    font-family: var(--font-family-secondary);
+    font-size: 0.875rem;
+    color: #9EA1B1;
+  }
+}
+.menu { 
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    text-decoration: none;
+    color: var(--text-primary-color);
+    transition: color 0.3s;
+    &:hover {
+      color: var(--primary-color);
+    }
+    & svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      transition: fill 0.3s;
+    }
+    &:hover svg {
+      fill: var(--primary-color);
+    }
+  }
+}
+.exit {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: color 0.3s;
+  & svg {
+    background-color: var(--background-color);
+    border-radius: 50%;
+    fill: var(--primary-color);
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: fill 0.3s;
+  }
+  &:hover svg {
+    fill: var(--primary-hover-color);
+  }
+}
+
+.active {
+  color: var(--primary-color);
+  svg {
+    fill: var(--primary-hover-color);
+  }
+}
