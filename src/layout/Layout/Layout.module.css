@@ -1,10 +1,11 @@
 .layout {
   display: flex;
-  min-width: 100vh;
+  min-height: 100vh;
 }
 .sidebar {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 1.875rem;
   border-right: 1px solid var(--separator-color);
 }
