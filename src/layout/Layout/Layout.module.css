@@ -46,10 +46,10 @@ margin-bottom: 2.875rem;
   transition: fill 0.3s;
 }
 .link:hover {
-  color: var(  --primary-color);
+  color: var(--primary-color);
 }
 .link:hover svg {
-  fill: var(  --primary-color);
+  fill: var(--primary-color);
 }
 .exit {
   margin-top: auto;
@@ -57,4 +57,16 @@ margin-bottom: 2.875rem;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  transition: color 0.3s;
+}
+.exit svg {
+  background-color: var(--background-color);
+  border-radius: 50%;
+  fill: var(--primary-color);
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: fill 0.3s;
+}
+.exit:hover svg {
+  fill: var(--primary-hover-color);
 }
