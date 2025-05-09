@@ -1,0 +1,45 @@
+.layout {
+  display: flex;
+  min-width: 100vh;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 1.875rem;
+  border-right: 1px solid var(--separator-color);
+}
+.user {
+margin-bottom: 2.875rem;
+}
+.avatar {
+  background-color: none;
+  width: 6rem;
+  height: auto;
+}
+.name {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.email{
+  font-family: var(--font-family-secondary);
+  font-size: 0.875rem;
+  color: #9EA1B1;
+}
+.menu { 
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  text-decoration: none;
+}
+.exit {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
