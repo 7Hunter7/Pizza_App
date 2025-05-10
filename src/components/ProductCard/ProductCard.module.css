@@ -1,3 +1,7 @@
+.link {
+  text-decoration: none;
+}
+
 .card {
   width: 20rem;
   display: flex;
@@ -18,6 +22,7 @@
   left: 1rem;
   padding: 0.1875rem 0.625rem;
   font-size: 1.25rem;
+  color: var(--text-primary-color);
   border-radius: var(--border-radius);
   background: var(--background-color);
 }
@@ -56,6 +61,7 @@
   left: 1rem;
   padding: 0.1875rem 0.5rem;
   font-size: 0.75rem;
+  color: var(--text-primary-color);
   border-radius: var(--border-radius);
   background: var(--background-color);
   box-shadow: 0 0.375rem 1.5rem 0 rgba(254, 114, 76, 0.2);
@@ -72,6 +78,7 @@
 .card .footer .title {
   font-size: 1.14rem;
   font-weight: 600;
+  color: var(--text-primary-color);
 }
 .card .footer .description {
   font-size: 0.91rem;
