@@ -1,9 +1,12 @@
+import { useParams } from 'react-router-dom';
 import styles from './Product.module.scss';
 
-function Product() {
+export function Product() {
+const {id} = useParams();
+
 	return ( 
-		<>Product</>
+		<>Product - {id}</>
 	);
 }
 
-export default Product;
+
