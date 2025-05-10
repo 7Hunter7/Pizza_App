@@ -3,7 +3,7 @@ import styles from './ProductCard.module.scss';
 import { Link } from 'react-router-dom';
 
 function ProductCard(props : ProductCardProps) {
-	return ( <Link to={'/'} className={styles.link}>
+	return ( <Link to={`/product/${props.id}`} className={styles.link}>
 		<div className={styles.card}>
 			<div className={styles.head} style={{backgroundImage: `url('${props.image}')`}}>
 				<div className={styles.price}>{props.price}&nbsp;
