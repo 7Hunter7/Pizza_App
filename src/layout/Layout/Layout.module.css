@@ -80,4 +80,9 @@
 }
 .active svg {
   fill: var(--primary-color);
+}
+
+.content {
+  width: 100%;
+  padding: 2.5rem 3.75rem;
 }/*# sourceMappingURL=Layout.module.css.map */

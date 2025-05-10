@@ -1,0 +1,12 @@
+.card .head {
+  position: relative;
+}
+.card .head .price {
+  position: absolute;
+}
+.card .head .add-to-card {
+  position: absolute;
+}
+.card .head .rating {
+  position: absolute;
+}/*# sourceMappingURL=ProductCard.module.css.map */

@@ -1,6 +1,5 @@
 import type { ProductCardProps } from './ProductCard.props';
-import styles from './ProductCard.module.css';
-import cn from 'classnames';
+import styles from './ProductCard.module.scss';
 
 function ProductCard(props : ProductCardProps) {
 	return (
