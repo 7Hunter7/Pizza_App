@@ -6,7 +6,9 @@ function ProductCard(props : ProductCardProps) {
 	return (
 		<div className={styles.card}>
 			<div className={styles.head}>
-				<div className={styles.price}>{props.price}₽</div>
+				<div className={styles.price}>{props.price}
+					<span className={styles.currency}>₽</span>
+				</div>
 				<button className={styles['add-to-card']}>
 					<svg 
 						xmlns="http://www.w3.org/2000/svg" 
