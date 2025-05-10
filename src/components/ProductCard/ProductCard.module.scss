@@ -25,7 +25,26 @@
     }
     .add-to-card {
       position: absolute;
-
+      display: flex;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.25rem 0.3rem;
+      border: none;
+      border-radius: 50%;
+      background: var(--primary-color);
+      cursor: pointer;
+      transition: background 0.3s transform 0.1s;
+      svg {
+        width: 2.125rem;
+        height: 2.125rem;
+        fill: var(--background-color);
+      }
+      &:hover {
+        background: var(--primary-hover-color);
+      }
+      &:active {
+        transform: scale(0.95);
+      }
     }
     .rating {
       position: absolute;
