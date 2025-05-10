@@ -5,7 +5,7 @@ function ProductCard(props : ProductCardProps) {
 	return (
 		<div className={styles.card}>
 			<div className={styles.head} style={{backgroundImage: `url('${props.image}')`}}>
-				<div className={styles.price}>{props.price}
+				<div className={styles.price}>{props.price}&nbsp;
 					<span className={styles.currency}>₽</span>
 				</div>
 				<button className={styles['add-to-card']}>

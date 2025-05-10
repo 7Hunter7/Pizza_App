@@ -14,8 +14,15 @@
 
     .price {
       position: absolute;
-
-      .currency {}
+      top: 1rem;
+      left: 1rem;
+      padding: 0.1875rem 0.625rem;
+      font-size: 1.25rem;
+      border-radius: var(--border-radius);
+      background: var(--background-color);
+      .currency {
+        color: var(  --primary-color);
+      }
     }
     .add-to-card {
       position: absolute;
