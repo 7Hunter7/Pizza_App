@@ -7,6 +7,9 @@
   --separator-color: #D4D6E0;
   --font-family-primary: "Source Sans 3", sans-serif;
   --font-family-secondary: "Open Sans", sans-serif;
+  --border-radius: 1.25rem;
+  --box-shadow: 18px 18px 36px 0px rgba(211, 209, 216, 0.25);
+
 }
 
 body {

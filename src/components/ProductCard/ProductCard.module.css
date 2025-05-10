@@ -1,5 +1,16 @@
+.card {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
 .card .head {
   position: relative;
+  min-width: 10.3rem;
 }
 .card .head .price {
   position: absolute;
@@ -9,4 +20,7 @@
 }
 .card .head .rating {
   position: absolute;
+}
+.card .footer {
+  padding: 0.75rem;
 }/*# sourceMappingURL=ProductCard.module.css.map */
