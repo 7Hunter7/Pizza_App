@@ -1,8 +1,16 @@
 .card {
-
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
 
   .head {
     position: relative;
+    min-width: 10.3rem;
 
     .price {
       position: absolute;
@@ -20,7 +28,7 @@
 }
 
   .footer {
-
+    padding: 0.75rem;
     .title {}
     .description {}
   }
