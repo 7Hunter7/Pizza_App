@@ -29,6 +29,21 @@
 }
 .card .head .rating {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: -0.75rem;
+  left: 1rem;
+  padding: 0.1875rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: var(--border-radius);
+  background: var(--background-color);
+  box-shadow: 0 0.375rem 1.5rem 0 rgba(254, 114, 76, 0.2);
+}
+.card .head .rating svg {
+  width: 1rem;
+  height: 1rem;
+  fill: var(--primary-color);
 }
 .card .footer {
   text-align: left;
