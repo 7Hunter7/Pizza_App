@@ -1,8 +1,9 @@
 import type { ProductCardProps } from './ProductCard.props';
 import styles from './ProductCard.module.scss';
+import { Link } from 'react-router-dom';
 
 function ProductCard(props : ProductCardProps) {
-	return (
+	return ( <Link to={'/'}>
 		<div className={styles.card}>
 			<div className={styles.head} style={{backgroundImage: `url('${props.image}')`}}>
 				<div className={styles.price}>{props.price}&nbsp;
@@ -34,6 +35,7 @@ function ProductCard(props : ProductCardProps) {
 				<div className={styles.description}>{props.description}</div>
 			</div>
 		</div>
+		</Link>
 	);
 }
 
