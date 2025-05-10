@@ -4,7 +4,7 @@ import styles from './ProductCard.module.scss';
 function ProductCard(props : ProductCardProps) {
 	return (
 		<div className={styles.card}>
-			<div className={styles.head}>
+			<div className={styles.head} style={{backgroundImage: `url('${props.image}')`}}>
 				<div className={styles.price}>{props.price}
 					<span className={styles.currency}>₽</span>
 				</div>
