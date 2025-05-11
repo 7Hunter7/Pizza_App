@@ -27,6 +27,9 @@ const router = createBrowserRouter([
 				path:'/product/:id' ,
 				element: <Product/>,
 				loader: async ({params}) => {
+					await new Promise<void>((resolve) => {
+						setTimeout(() => {resolve()}, 2000 ) 
+					})
 					const { data } = await axios.get(`${PREFIX}/products/${params.id}`);
 					return data;
 				}
