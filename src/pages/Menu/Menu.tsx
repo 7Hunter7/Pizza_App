@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Headling from '../../components/Headling/Headling';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import Search from '../../components/Search/Search';
@@ -20,6 +20,9 @@ export function Menu() {
 			console.error('Error: ', err);
 		}
 	};
+	useEffect(() => {
+		getMenu();
+	}, [])
 
 	return (
 		<>
