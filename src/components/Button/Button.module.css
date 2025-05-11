@@ -26,4 +26,5 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   padding: 1.25rem 3.75rem;
+  box-shadow: var(--button-box-shadow);
 }
