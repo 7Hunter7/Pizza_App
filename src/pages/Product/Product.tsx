@@ -9,5 +9,3 @@ const data = useLoaderData() as Product;
 		<>Product - {data.name}</>
 	);
 }
-
-
