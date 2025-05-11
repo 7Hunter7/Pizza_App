@@ -4,6 +4,8 @@ import Headling from '../../components/Headling/Headling';
 import Input from '../../components/Input/Input';
 import styles from './Login.module.scss';
 import type { FormEvent } from 'react';
+import axios from 'axios';
+import { PREFIX } from '../../helpers/API';
 
 export type LoginForm = {
 	email: {
@@ -15,13 +17,22 @@ export type LoginForm = {
 }
 
 export function Login() {
-	const submit = (e: FormEvent) => {
+	const submit = async(e: FormEvent) => {
 		e.preventDefault();
 		const target = e.target as typeof e.target & LoginForm;
 		const { email, password } = target;
 		console.log('Email: ', email.value);
 		console.log('Password: ', password.value);
+		await sendLogin(email.value, password.value);
 	};
+
+	const sendLogin = async (email:string, password:string) => {
+		const { data } = await axios.post(`${PREFIX}/auth/login`, {
+			email,
+			password
+		})
+		console.log('Data from sendLogin(): ', data);
+	} 
 
 	return <div className={styles.login}>
 		<Headling>Вход</Headling>
