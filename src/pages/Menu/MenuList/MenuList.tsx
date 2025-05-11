@@ -12,6 +12,6 @@ export function MenuList({products}: MenuListProps) {
         rating={prod.rating}
         price={prod.price}
         image={prod.image}
-      />
-  )
+      />))
+    )
 }
