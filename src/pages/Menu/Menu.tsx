@@ -9,13 +9,22 @@ import axios from 'axios';
 
 export function Menu() {
 	const [products, setProducts ] = useState<Product[]>([]);
+	const [isLoading, setIsLoading ] = useState<boolean>(false);
 
 	const getMenu = async() => {
 		try {
+			setIsLoading(true);
+			await new Promise<void>((resolve) => {
+				setTimeout(() => {resolve()}, 2000 ) 
+			})
+
 			const {data} = await axios.get<Product[]>(`${PREFIX}/products`);
 			setProducts(data);
 		} catch(err) {
 			console.error('Error: ', err);
+		}
+		finally{
+			setIsLoading(false);
 		}
 	};
 
@@ -30,7 +39,7 @@ export function Menu() {
         <Search placeholder='Введите блюдо или состав'/>
 			</div>
 			<div>
-				{products.map(prod => (
+				{!isLoading && products.map(prod => (
 					<ProductCard
 						key={prod.id}
 						id={prod.id}
@@ -41,6 +50,7 @@ export function Menu() {
 						image={prod.image}
 					/>
 				))}
+				{isLoading && <>Загрузка...</>}
 			</div>
     </>
 	);
