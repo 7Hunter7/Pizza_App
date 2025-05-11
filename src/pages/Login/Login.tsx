@@ -5,10 +5,22 @@ import Input from '../../components/Input/Input';
 import styles from './Login.module.scss';
 import type { FormEvent } from 'react';
 
+export type LoginForm = {
+	email: {
+		value: string
+	},
+	password: {
+		value: string
+	}
+}
+
 export function Login() {
 	const submit = (e: FormEvent) => {
 		e.preventDefault();
-		console.log(e);
+		const target = e.target as typeof e.target & LoginForm;
+		const { email, password } = target;
+		console.log('Email: ', email.value);
+		console.log('Password: ', password.value);
 	};
 
 	return <div className={styles.login}>
