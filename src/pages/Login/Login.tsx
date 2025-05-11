@@ -18,7 +18,7 @@ export function Login() {
 			</div>
 			<Button appearence='big'>Вход</Button>
 		</form>
-			<div>
+			<div className={styles.links}>
 				<p>Нет аккаунта?</p>
 				<Link to='/auth/register'>Зарегистрироваться</Link>
 			</div>
