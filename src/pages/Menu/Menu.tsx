@@ -28,14 +28,17 @@ export function Menu() {
         <Search placeholder='Введите блюдо или состав'/>
 			</div>
 			<div>
-				<ProductCard 
-					id={1}
-					title='Наслаждение'
-					description='Салями, руккола, помидоры, оливки'
-					rating={4.5}
-					price={300}
-					image='/pizza.jpg'
-				/>
+				{products.map(prod => (
+					<ProductCard
+						key={prod.id}
+						id={prod.id}
+						title={prod.name}
+						description={prod.ingredients.join(', ')}
+						rating={prod.rating}
+						price={prod.price}
+						image={prod.image}
+					/>
+				))}
 			</div>
     </>
 	);
