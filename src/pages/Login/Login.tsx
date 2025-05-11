@@ -4,7 +4,7 @@ import Headling from '../../components/Headling/Headling';
 import Input from '../../components/Input/Input';
 import styles from './Login.module.scss';
 import type { FormEvent } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { PREFIX } from '../../helpers/API';
 
 export type LoginForm = {
@@ -27,12 +27,20 @@ export function Login() {
 	};
 
 	const sendLogin = async (email:string, password:string) => {
+		try {
 		const { data } = await axios.post(`${PREFIX}/auth/login`, {
 			email,
 			password
 		})
 		console.log('Data from sendLogin(): ', data);
+		} catch(err) {
+			if (err instanceof AxiosError) {
+				console.error('Error: ', err.message);
+			}
+		}
+
 	} 
+
 
 	return <div className={styles.login}>
 		<Headling>Вход</Headling>
