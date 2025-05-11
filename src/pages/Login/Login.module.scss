@@ -1,0 +1,22 @@
+.login{
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem;
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      & label {
+        color:  #C4C4C4;
+        font-size: 17px;
+      }
+    }
+  }
+}
