@@ -11,15 +11,16 @@ export function Menu() {
 
 	const getMenu = async() => {
 		try {
-		const res = await fetch(`${PREFIX}/products`);
-		if (!res.ok) return;
-		const data = await res.json() as Product[];
-		console.log('Data: ', data);
-		setProducts(data);
+			const res = await fetch(`${PREFIX}/products`);
+			if (!res.ok) return;
+			const data = await res.json() as Product[];
+			console.log('Data: ', data);
+			setProducts(data);
 		} catch(err) {
 			console.error('Error: ', err);
 		}
 	};
+	
 	useEffect(() => {
 		getMenu();
 	}, [])
