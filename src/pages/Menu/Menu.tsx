@@ -10,7 +10,6 @@ import axios from 'axios';
 export function Menu() {
 	const [products, setProducts ] = useState<Product[]>([]);
 
-	// С использованием axios
 	const getMenu = async() => {
 		try {
 			const {data} = await axios.get<Product[]>(`${PREFIX}/products`);
@@ -19,18 +18,6 @@ export function Menu() {
 			console.error('Error: ', err);
 		}
 	};
-	// С использованием fetch
-	// const getMenu = async() => {
-	// 	try {
-	// 		const res = await fetch(`${PREFIX}/products`);
-	// 		if (!res.ok) return;
-	// 		const data = await res.json() as Product[];
-	// 		console.log('Data: ', data);
-	// 		setProducts(data); 
-	// 	} catch(err) {
-	// 		console.error('Error: ', err);
-	// 	}
-	// };
 
 	useEffect(() => {
 		getMenu();
