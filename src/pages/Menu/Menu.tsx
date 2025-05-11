@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Headling from '../../components/Headling/Headling';
-import ProductCard from '../../components/ProductCard/ProductCard';
+import { MenuList } from './MenuList/MenuList';
 import Search from '../../components/Search/Search';
 import { PREFIX } from '../../helpers/API';
 import type { Product } from '../../interfaces/product.interface';
@@ -42,18 +42,8 @@ export function Menu() {
 			</div>
 			<div>
 				{error && <>Ошибка: {error}</>}
-				{!isLoading && products.map(prod => (
-					<ProductCard
-						key={prod.id}
-						id={prod.id}
-						title={prod.name}
-						description={prod.ingredients.join(', ')}
-						rating={prod.rating}
-						price={prod.price}
-						image={prod.image}
-					/>
-				))}
 				{isLoading && <>Загрузка...</>}
+				{!isLoading && <MenuList products={products}/>}
 			</div>
     </>
 	);
