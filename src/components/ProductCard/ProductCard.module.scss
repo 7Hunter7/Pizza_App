@@ -12,8 +12,12 @@
   box-shadow: var(--box-shadow);
 
   .head {
+    min-width: 20rem;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     position: relative;
-    min-width: 10.3rem;
     .price {
       position: absolute;
       top: 1rem;
