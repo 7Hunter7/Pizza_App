@@ -19,7 +19,7 @@ export function Menu() {
 				setTimeout(() => {resolve()}, 2000 ) 
 			})
 
-			const {data} = await axios.get<Product[]>(`${PREFIX}/prodcucts`);
+			const {data} = await axios.get<Product[]>(`${PREFIX}/products`);
 			setProducts(data);
 		} catch(err) {
 			if (err instanceof AxiosError) setError(err.message)
