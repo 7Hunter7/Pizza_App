@@ -1,4 +1,4 @@
-.login{
+.login {
   width: 100%;
   max-width: 25rem;
   display: flex;
@@ -37,5 +37,9 @@
       color: var(--primary-hover-color);
       } 
     }
+  }
+
+  .error {
+    color: red;
   }
 }
