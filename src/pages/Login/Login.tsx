@@ -3,10 +3,11 @@ import Button from '../../components/Button/Button';
 import Headling from '../../components/Headling/Headling';
 import Input from '../../components/Input/Input';
 import styles from './Login.module.scss';
-import type { FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import axios, { AxiosError } from 'axios';
 import { PREFIX } from '../../helpers/API';
 
+// Типизация полей формы
 export type LoginForm = {
 	email: {
 		value: string
@@ -17,8 +18,12 @@ export type LoginForm = {
 }
 
 export function Login() {
+	const [error, setError ] = useState<string | undefined>();
+	
+	// Получение данных полей формы
 	const submit = async(e: FormEvent) => {
 		e.preventDefault();
+		setError(undefined);
 		const target = e.target as typeof e.target & LoginForm;
 		const { email, password } = target;
 		console.log('Email: ', email.value);
@@ -26,24 +31,27 @@ export function Login() {
 		await sendLogin(email.value, password.value);
 	};
 
+	// Отправка запроса на сервер для входа
 	const sendLogin = async (email:string, password:string) => {
 		try {
-		const { data } = await axios.post(`${PREFIX}/auth/login`, {
-			email,
-			password
-		})
-		console.log('Data from sendLogin(): ', data);
+			// Запрос на сервер с данными из полей формы
+			const { data } = await axios.post(`${PREFIX}/auth/login`, {
+				email,
+				password
+			})
+			console.log('Data from sendLogin(): ', data);
 		} catch(err) {
 			if (err instanceof AxiosError) {
-				console.error('Error: ', err.message);
+				console.error('Error: ', err);
+				setError(err.response?.data.message)
 			}
 		}
-
 	} 
 
 
 	return <div className={styles.login}>
 		<Headling>Вход</Headling>
+		{error && <div className={styles.error}>Ошибка: {error}</div>}
 		<form className={styles.form} onSubmit={submit}>
 			<div className={styles.field}>
 				<label htmlFor='email'>Ваш email</label>
