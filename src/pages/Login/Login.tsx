@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Headling from '../../components/Headling/Headling';
 import Input from '../../components/Input/Input';
@@ -20,6 +20,7 @@ export type LoginForm = {
 
 export function Login() {
 	const [error, setError ] = useState<string | undefined>();
+	const navigate = useNavigate();
 	
 	// Получение данных полей формы
 	const submit = async(e: FormEvent) => {
@@ -42,6 +43,7 @@ export function Login() {
 			})
 			console.log('Data from sendLogin(): ', data);
 			localStorage.setItem('jwt', data.access_token); // запись токена в localStorage
+			navigate('/');
 		} catch(err) {
 			if (err instanceof AxiosError) {
 				console.error('Error: ', err);
