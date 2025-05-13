@@ -6,6 +6,7 @@ import styles from './Login.module.scss';
 import { useState, type FormEvent } from 'react';
 import axios, { AxiosError } from 'axios';
 import { PREFIX } from '../../helpers/API';
+import type { LoginResponse } from '../../interfaces/auth.interface';
 
 // Типизация полей формы
 export type LoginForm = {
@@ -35,11 +36,12 @@ export function Login() {
 	const sendLogin = async (email:string, password:string) => {
 		try {
 			// Запрос на сервер с данными из полей формы
-			const { data } = await axios.post(`${PREFIX}/auth/login`, {
+			const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {
 				email,
 				password
 			})
 			console.log('Data from sendLogin(): ', data);
+			localStorage.setItem('jwt', data.access_token); // запись токена в localStorage
 		} catch(err) {
 			if (err instanceof AxiosError) {
 				console.error('Error: ', err);

@@ -1,3 +1,3 @@
 export interface LoginResponse {
-  access_tocen: string;
+  access_token: string;
 }
