@@ -1,9 +1,17 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import styles from './Layout.module.scss';
 import cn from 'classnames';
 
 export function Layout() {
+	const navigate = useNavigate();
+  
+  // Выход из приложения
+  const logout = () => {
+    localStorage.removeItem('jwt');
+    navigate('/auth/login');
+  }
+
 	return (
     <div className={styles.layout}>
       <div className={styles.sidebar}>
@@ -40,7 +48,7 @@ export function Layout() {
             Корзина
           </NavLink>
         </div>
-        <Button className={styles.exit}>
+        <Button className={styles.exit} onClick={logout}>
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             width="32" 
