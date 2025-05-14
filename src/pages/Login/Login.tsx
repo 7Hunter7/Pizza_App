@@ -7,6 +7,9 @@ import { useState, type FormEvent } from 'react';
 import axios, { AxiosError } from 'axios';
 import { PREFIX } from '../../helpers/API';
 import type { LoginResponse } from '../../interfaces/auth.interface';
+import { useDispatch } from 'react-redux';
+import type { AppDispath } from '../../store/store';
+import { userActions } from '../../store/user.slice';
 
 // Типизация полей формы
 export type LoginForm = {
@@ -21,6 +24,7 @@ export type LoginForm = {
 export function Login() {
 	const [error, setError ] = useState<string | undefined>();
 	const navigate = useNavigate();
+	const dispatch = useDispatch<AppDispath>();
 	
 	// Получение данных полей формы
 	const submit = async(e: FormEvent) => {
@@ -43,6 +47,7 @@ export function Login() {
 			})
 			console.log('Data from sendLogin(): ', data);
 			localStorage.setItem('jwt', data.access_token); // запись токена в localStorage
+			dispatch(userActions.addJwt(data.access_token)); // запись токена в state
 			navigate('/');
 		} catch(err) {
 			if (err instanceof AxiosError) {
