@@ -1,5 +1,8 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { loadState } from './storage';
+import axios from 'axios';
+import { PREFIX } from '../helpers/API';
+import type { LoginResponse } from '../interfaces/auth.interface';
 
 export const JWT_PERSISTENT_STATE = 'userData';
 
@@ -14,6 +17,18 @@ export interface UserState { // будем расширять!
 const initialState: UserState = {
   jwt: loadState<UserPersistentState>(JWT_PERSISTENT_STATE)?.jwt ?? null
 };
+
+export const login  = createAsyncThunk('user/login',
+    async (params: {email: string, password: string}) => {
+      // Запрос на сервер с данными из полей формы
+			const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {
+				email: params.email,
+				password: params.password
+			})
+      return data;
+    }
+  );
+
 
 export const userSlice = createSlice({
   name: 'user',
