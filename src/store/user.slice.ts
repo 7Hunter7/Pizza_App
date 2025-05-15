@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { loadState } from './storage';
 
-export const JWT_PERSISTENT_STATE = 'jwt';
+export const JWT_PERSISTENT_STATE = 'userData';
 
 export interface UserState {
   jwt: string | null;
