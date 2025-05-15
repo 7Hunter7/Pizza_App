@@ -3,12 +3,16 @@ import { loadState } from './storage';
 
 export const JWT_PERSISTENT_STATE = 'userData';
 
-export interface UserState {
+export interface UserPersistentState {
+  jwt: string | null;
+}
+
+export interface UserState { // будем расширять!
   jwt: string | null;
 };
 
 const initialState: UserState = {
-  jwt: loadState(JWT_PERSISTENT_STATE) ?? null
+  jwt: loadState<UserPersistentState>(JWT_PERSISTENT_STATE)?.jwt ?? null
 };
 
 export const userSlice = createSlice({
