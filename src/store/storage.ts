@@ -1,5 +1,5 @@
 // Функция парсинга JWT из localStorage
-export function loadState(key: string) {
+export function loadState<T>(key: string): T | undefined {
   try {
     const jsonState = localStorage.getItem(key);
     if (!jsonState) return undefined;
