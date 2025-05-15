@@ -46,7 +46,6 @@ export function Login() {
 				password
 			})
 			console.log('Data from sendLogin(): ', data);
-			localStorage.setItem('jwt', data.access_token); // запись токена в localStorage
 			dispatch(userActions.addJwt(data.access_token)); // запись токена в state 
 			navigate('/');
 		} catch(err) {
