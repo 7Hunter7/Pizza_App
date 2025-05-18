@@ -10,8 +10,9 @@ export interface UserPersistentState {
   jwt: string | null;
 }
 
-export interface UserState { // будем расширять!
+export interface UserState {
   jwt: string | null;
+  loginErrorMessage?: string;
 };
 
 const initialState: UserState = {
@@ -39,8 +40,11 @@ export const userSlice = createSlice({
     }
   },
   extraReducers: (builder) =>  {
-    builder.addCase(login.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
+    builder.addCase(login.fulfilled, (state, action) => {
       state.jwt = action.payload.access_token;
+    });
+    builder.addCase(login.rejected, (state, action) => {
+      state.loginErrorMessage = action.error.message;
     })
   }, 
 }); 
