@@ -3,13 +3,11 @@ import Button from '../../components/Button/Button';
 import Headling from '../../components/Headling/Headling';
 import Input from '../../components/Input/Input';
 import styles from './Login.module.scss';
-import { useState, type FormEvent } from 'react';
-import axios, { AxiosError } from 'axios';
-import { PREFIX } from '../../helpers/API';
-import type { LoginResponse } from '../../interfaces/auth.interface';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState, type FormEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispath } from '../../store/store';
-import { userActions } from '../../store/user.slice';
+import { login } from '../../store/user.slice';
+import type { RootStore } from '../../store/store';
 
 // Типизация полей формы
 export type LoginForm = {
@@ -25,7 +23,12 @@ export function Login() {
 	const [error, setError ] = useState<string | undefined>();
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispath>();
-	
+	const jwt = useSelector((s: RootStore) => s.user.jwt	)
+
+	useEffect(() => {
+		if(jwt) navigate('/');
+	}, [jwt]) 
+
 	// Получение данных полей формы
 	const submit = async(e: FormEvent) => {
 		e.preventDefault();
@@ -39,23 +42,23 @@ export function Login() {
 
 	// Отправка запроса на сервер для входа
 	const sendLogin = async (email:string, password:string) => {
-		try {
-			// Запрос на сервер с данными из полей формы
-			const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {
-				email,
-				password
-			})
-			console.log('Data from sendLogin(): ', data);
-			dispatch(userActions.addJwt(data.access_token)); // запись токена в state 
-			navigate('/');
-		} catch(err) {
-			if (err instanceof AxiosError) {
-				console.error('Error: ', err);
-				setError(err.response?.data.message)
-			}
-		}
+		dispatch(login ({email,password})); 
+		// try {
+		// 	// Запрос на сервер с данными из полей формы
+		// 	const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {
+		// 		email,
+		// 		password
+		// 	})
+		// 	console.log('Data from sendLogin(): ', data);
+		// 	dispatch(userActions.addJwt(data.access_token)); // запись токена в state 
+		// 	navigate('/');
+		// } catch(err) {
+		// 	if (err instanceof AxiosError) {
+		// 		console.error('Error: ', err);
+		// 		setError(err.response?.data.message)
+		// 	}
+		// }
 	} 
-
 
 	return <div className={styles.login}>
 		<Headling>Вход</Headling>
