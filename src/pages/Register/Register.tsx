@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Headling from '../../components/Headling/Headling';
 import Input from '../../components/Input/Input';
-import styles from './Register.module.scss';
+import styles from '../Login/Login.module.scss';
 import { useEffect, type FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispath, RootStore } from '../../store/store';
