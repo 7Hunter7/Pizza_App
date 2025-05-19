@@ -73,7 +73,11 @@ export const userSlice = createSlice({
     });
     builder.addCase(login.rejected, (state, action) => {
       state.loginErrorMessage = action.error.message;
-    })
+    });
+    
+    builder.addCase(profile.fulfilled, (state, action) => {
+      state.profile = action.payload;
+    });
   }, 
 }); 
 
