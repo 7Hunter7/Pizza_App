@@ -3,6 +3,7 @@ import { loadState } from './storage';
 import axios, { AxiosError } from 'axios';
 import { PREFIX } from '../helpers/API';
 import type { LoginResponse } from '../interfaces/auth.interface';
+import type { Profile } from '../interfaces/user.interface';
 
 export const JWT_PERSISTENT_STATE = 'userData';
 
@@ -13,7 +14,7 @@ export interface UserPersistentState {
 export interface UserState {
   jwt: string | null;
   loginErrorMessage?: string;
-  profile?: 
+  profile?: Profile;
 };
 
 const initialState: UserState = {
@@ -21,13 +22,13 @@ const initialState: UserState = {
 };
 
 export const login  = createAsyncThunk('user/login',
-    async (params: {email: string, password: string}) => {
-      try {
-        // Запрос на сервер с данными из полей формы
+  async (params: {email: string, password: string}) => {
+    try {
+      // Запрос на сервер с данными из полей формы
 			const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {
 				email: params.email,
 				password: params.password
-			})
+		})
       return data;
     } catch(err) {
       if(err instanceof AxiosError) {
