@@ -1,15 +1,27 @@
 import type { ProductCardProps } from './ProductCard.props';
 import styles from './ProductCard.module.scss';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import type { AppDispath } from '../../store/store';
+import { cartActions } from '../../store/cart.slice';
+import type { MouseEvent } from 'react';
 
 function ProductCard(props : ProductCardProps) {
+	const dispatch = useDispatch<AppDispath>();
+
+	// Добавление товара в карзину
+	const addToCart = (e: MouseEvent) => {
+		e.preventDefault();
+		dispatch(cartActions.add(props.id));
+	};
+
 	return ( <Link to={`/product/${props.id}`} className={styles.link}>
 		<div className={styles.card}>
 			<div className={styles.head} style={{backgroundImage: `url('${props.image}')`}}>
 				<div className={styles.price}>{props.price}&nbsp;
 					<span className={styles.currency}>₽</span>
 				</div>
-				<button className={styles['add-to-card']}>
+				<button className={styles['add-to-card']} onClick={addToCart}>
 					<svg 
 						xmlns="http://www.w3.org/2000/svg" 
 						width="32" 
