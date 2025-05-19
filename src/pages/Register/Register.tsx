@@ -6,7 +6,7 @@ import styles from './Register.module.scss';
 import { useEffect, type FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispath, RootStore } from '../../store/store';
-import { login, userActions } from '../../store/user.slice';
+import { register, userActions } from '../../store/user.slice';
 
 // Типизация полей формы
 export type RegisterForm = {
@@ -24,7 +24,7 @@ export type RegisterForm = {
 export function Register() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispath>();
-	const { jwt, loginErrorMessage } = useSelector((s: RootStore) => s.user);
+	const { jwt, registerErrorMessage } = useSelector((s: RootStore) => s.user);
 
 	useEffect(() => {
 		if(jwt) navigate('/');
@@ -33,22 +33,19 @@ export function Register() {
 	// Получение данных полей формы
 	const submit = async(e: FormEvent) => {
 		e.preventDefault();
-		dispatch(userActions.clearLoginError());
+		dispatch(userActions.clearRegisterError());
 		const target = e.target as typeof e.target & RegisterForm;
-		const { email, password } = target;
+		const { name, email, password } = target;
+		console.log('Name: ', name.value);
 		console.log('Email: ', email.value);
 		console.log('Password: ', password.value);
-		await sendLogin(email.value, password.value);
+		// Отправка запроса на сервер для входа
+		dispatch(register({name: name.value, email: email.value, password: password.value})); 
 	};
-
-	// Отправка запроса на сервер для входа
-	const sendLogin = async (email:string, password:string) => {
-		dispatch(login ({email,password})); 
-	} 
 
 	return <div className={styles.login}>
 		<Headling>Регистрация</Headling>
-		{loginErrorMessage && <div className={styles.error}>Ошибка: {loginErrorMessage}</div>}
+		{registerErrorMessage && <div className={styles.error}>Ошибка: {registerErrorMessage}</div>}
 		<form className={styles.form} onSubmit={submit}>
 		<div className={styles.field}>
 				<label htmlFor='name'>Ваше Имя</label>
