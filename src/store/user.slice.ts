@@ -15,6 +15,7 @@ export interface UserPersistentState {
 export interface UserState {
   jwt: string | null;
   loginErrorMessage?: string;
+  registerErrorMessage?: string;
   profile?: Profile;
 };
 
@@ -29,6 +30,25 @@ export const login  = createAsyncThunk('user/login',
       // Запрос на сервер с данными из полей формы
 			const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {
 				email: params.email,
+				password: params.password
+		});
+      return data;
+    } catch(err) {
+      if(err instanceof AxiosError) {
+        throw new Error(err.response?.data.message);
+      }
+    }
+  }
+);
+
+// Регистрация пользователя
+export const register  = createAsyncThunk('user/register',
+  async (params: {name: string, email: string, password: string}) => {
+    try {
+      // Запрос на сервер с данными из полей формы
+			const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/register`, {
+				name: params.name,
+        email: params.email,
 				password: params.password
 		});
       return data;
