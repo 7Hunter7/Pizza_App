@@ -37,8 +37,12 @@ export const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.jwt = null;
+    }, 
+    clearLoginError: (state) => {
+      state.loginErrorMessage = undefined;
     }
   },
+  // Обработка состояний
   extraReducers: (builder) =>  {
     builder.addCase(login.fulfilled, (state, action) => {
       state.jwt = action.payload.access_token;
