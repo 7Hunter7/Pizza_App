@@ -41,7 +41,7 @@ export const login  = createAsyncThunk('user/login',
 );
 
 // Получение профиля пользователя
-export const profile  = createAsyncThunk<Profile, void, {state: RootStore}>('user/profile',
+export const getProfile  = createAsyncThunk<Profile, void, {state: RootStore}>('user/profile',
   async ( _, thunkApi) => {
     const jwt = thunkApi.getState().user.jwt;
     // Запрос на сервер для получения профиля пользователя
@@ -74,8 +74,8 @@ export const userSlice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       state.loginErrorMessage = action.error.message;
     });
-    
-    builder.addCase(profile.fulfilled, (state, action) => {
+
+    builder.addCase(getProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
     });
   }, 
