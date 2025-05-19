@@ -83,6 +83,9 @@ export const userSlice = createSlice({
     }, 
     clearLoginError: (state) => {
       state.loginErrorMessage = undefined;
+    },
+    clearRegisterError: (state) => {
+      state.registerErrorMessage = undefined;
     }
   },
   // Обработка состояний
