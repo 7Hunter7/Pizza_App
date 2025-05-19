@@ -51,6 +51,7 @@ export const userSlice = createSlice({
   // Обработка состояний
   extraReducers: (builder) =>  {
     builder.addCase(login.fulfilled, (state, action) => {
+      if (!action.payload) return;
       state.jwt = action.payload.access_token;
     });
     builder.addCase(login.rejected, (state, action) => {
