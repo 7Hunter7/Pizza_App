@@ -4,6 +4,7 @@ import axios, { AxiosError } from 'axios';
 import { PREFIX } from '../helpers/API';
 import type { LoginResponse } from '../interfaces/auth.interface';
 import type { Profile } from '../interfaces/user.interface';
+import type { RootStore } from './store';
 
 export const JWT_PERSISTENT_STATE = 'userData';
 
@@ -21,6 +22,7 @@ const initialState: UserState = {
   jwt: loadState<UserPersistentState>(JWT_PERSISTENT_STATE)?.jwt ?? null
 };
 
+// Вход пользователя
 export const login  = createAsyncThunk('user/login',
   async (params: {email: string, password: string}) => {
     try {
@@ -28,7 +30,7 @@ export const login  = createAsyncThunk('user/login',
 			const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {
 				email: params.email,
 				password: params.password
-		})
+		});
       return data;
     } catch(err) {
       if(err instanceof AxiosError) {
@@ -38,6 +40,19 @@ export const login  = createAsyncThunk('user/login',
   }
 );
 
+// Получение профиля пользователя
+export const profile  = createAsyncThunk<Profile, void, {state: RootStore}>('user/profile',
+  async ( _, thunkApi) => {
+    const jwt = thunkApi.getState().user.jwt;
+    // Запрос на сервер для получения профиля пользователя
+		const { data } = await axios.get<Profile>(`${PREFIX}/user/profile`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+		});
+    return data;
+  }
+);
 
 export const userSlice = createSlice({
   name: 'user',
