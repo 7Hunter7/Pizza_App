@@ -19,6 +19,7 @@ export interface UserState {
   profile?: Profile;
 };
 
+// Начальное состояние
 const initialState: UserState = {
   jwt: loadState<UserPersistentState>(JWT_PERSISTENT_STATE)?.jwt ?? null
 };
