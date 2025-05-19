@@ -13,6 +13,7 @@ export interface UserPersistentState {
 export interface UserState {
   jwt: string | null;
   loginErrorMessage?: string;
+  profile?: 
 };
 
 const initialState: UserState = {
@@ -33,8 +34,8 @@ export const login  = createAsyncThunk('user/login',
         throw new Error(err.response?.data.message);
       }
     }
-    }
-  );
+  }
+);
 
 
 export const userSlice = createSlice({
