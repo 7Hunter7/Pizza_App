@@ -101,6 +101,14 @@ export const userSlice = createSlice({
     builder.addCase(getProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
     });
+
+    builder.addCase(register.fulfilled, (state, action) => {
+      if (!action.payload) return;
+      state.jwt = action.payload.access_token;
+    });
+    builder.addCase(register.rejected, (state, action) => {
+      state.registerErrorMessage = action.error.message;
+    });
   }, 
 }); 
 
