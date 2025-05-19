@@ -3,11 +3,10 @@ import Button from '../../components/Button/Button';
 import Headling from '../../components/Headling/Headling';
 import Input from '../../components/Input/Input';
 import styles from './Login.module.scss';
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, type FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import type { AppDispath } from '../../store/store';
-import { login } from '../../store/user.slice';
-import type { RootStore } from '../../store/store';
+import type { AppDispath, RootStore } from '../../store/store';
+import { login, userActions } from '../../store/user.slice';
 
 // Типизация полей формы
 export type LoginForm = {
@@ -20,10 +19,9 @@ export type LoginForm = {
 }
 
 export function Login() {
-	const [error, setError ] = useState<string | undefined>();
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispath>();
-	const jwt = useSelector((s: RootStore) => s.user.jwt	)
+	const { jwt, loginErrorMessage } = useSelector((s: RootStore) => s.user);
 
 	useEffect(() => {
 		if(jwt) navigate('/');
@@ -32,7 +30,7 @@ export function Login() {
 	// Получение данных полей формы
 	const submit = async(e: FormEvent) => {
 		e.preventDefault();
-		setError(undefined);
+		dispatch(userActions.clearLoginError());
 		const target = e.target as typeof e.target & LoginForm;
 		const { email, password } = target;
 		console.log('Email: ', email.value);
@@ -62,7 +60,7 @@ export function Login() {
 
 	return <div className={styles.login}>
 		<Headling>Вход</Headling>
-		{error && <div className={styles.error}>Ошибка: {error}</div>}
+		{loginErrorMessage && <div className={styles.error}>Ошибка: {loginErrorMessage}</div>}
 		<form className={styles.form} onSubmit={submit}>
 			<div className={styles.field}>
 				<label htmlFor='email'>Ваш email</label>
