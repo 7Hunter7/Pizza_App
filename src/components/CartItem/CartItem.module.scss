@@ -13,7 +13,6 @@
     border-radius: 1.25rem;
     filter: drop-shadow(0px 8px 25px rgbs(224,219,196,0.90));
   }
-
   .description {
     display: flex;
     flex-direction: column;
@@ -36,5 +35,16 @@
     align-items: flex-start;
     justify-content: center;
     gap: 0.3rem;
+    .button {
+      width:1.75rem;
+      height: 1.75rem;
+      transition: fill 0.3s transform 0.1s;
+      &:hover {
+        fill: var(--primary-hover-color);
+      }
+      &:active {
+        transform: scale(0.97);
+      }
+    }
   }
 }

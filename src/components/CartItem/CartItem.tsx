@@ -51,7 +51,7 @@ function CartItem(props : CartItemProps)  {
 						<path  d="M17 13h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/>
 					</svg>
 				</button>
-				<button className={styles['remove']} onClick={remove}>
+				<button className={styles['button']} onClick={remove}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="32"
