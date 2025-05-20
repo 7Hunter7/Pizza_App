@@ -33,7 +33,7 @@ export function Cart() {
       {items.map(i => {
         const product = cartProducts.find(p => p.id === i.id);
         if(!product) return;
-        return <CartItem count={i.count} {...product}/>
+        return <CartItem key={product.id} count={i.count} {...product}/>
       })}
     </div>
 	);
