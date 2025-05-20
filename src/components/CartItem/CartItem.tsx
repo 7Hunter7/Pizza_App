@@ -14,12 +14,13 @@ function CartItem(props : CartItemProps)  {
 	};
 	// Уменьшить количество товара в карзине
 	const descrease = () => {
+		dispatch(cartActions.remove(props.id));
 
 	};
 
 	// Удаление товара из карзины
 	const remove = () => {
-
+		dispatch(cartActions.delete(props.id));
 	};
 
 	return (
