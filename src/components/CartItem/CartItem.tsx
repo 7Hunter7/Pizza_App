@@ -27,9 +27,7 @@ function CartItem(props : CartItemProps)  {
 			<div className={styles.image} style={{backgroundImage: `url('${props.image}')`}}>
       <div className={styles.description}>
 				<div className={styles.name}>{props.name}</div>
-				<div className={styles.price}>{props.price}&nbsp;
-					<span className={styles.currency}>₽</span>
-				</div>
+				<div className={styles.price}>{props.price}&nbsp;₽</div>
 			</div>
 			<div className={styles.actions}>
 				<button className={styles['button']} onClick={descrease}></button>
