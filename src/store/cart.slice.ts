@@ -19,7 +19,7 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     delete: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter(i => i.id === action.payload);
+      state.items = state.items.filter(i => i.id !== action.payload);
     },
     remove: (state, action: PayloadAction<number>) => {
       const existed = state.items.find(i => i.id === action.payload);
@@ -30,7 +30,7 @@ export const cartSlice = createSlice({
         });
         return;
       }
-      state.items = state.items.filter(i => i.id === action.payload);
+      state.items = state.items.filter(i => i.id !== action.payload);
     },
     add: (state, action: PayloadAction<number>) => {
       const existed = state.items.find(i => i.id === action.payload);
