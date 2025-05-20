@@ -31,5 +31,10 @@
 
   .actions {
     margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.3rem;
   }
 }
