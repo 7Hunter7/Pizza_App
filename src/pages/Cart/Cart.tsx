@@ -1,7 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Headling from '../../components/Headling/Headling';
 import styles from './Cart.module.scss';
-import type { RootStore } from '../../store/store';
+import type { AppDispath, RootStore } from '../../store/store';
 import CartItem from '../../components/CartItem/CartItem';
 import { useEffect, useState } from 'react';
 import type { Product } from '../../interfaces/product.interface';
@@ -9,12 +9,15 @@ import axios from 'axios';
 import { PREFIX } from '../../helpers/API';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { cartActions } from '../../store/cart.slice';
 
 export function Cart() {
   const [cartProducts, setCartProducts ] = useState<Product[]>([]);
   const items = useSelector((s: RootStore) => s.cart.items);
   const jwt = useSelector((s: RootStore) => s.user.jwt);
   const navigate = useNavigate();
+	const dispatch = useDispatch<AppDispath>();
+
   
   const DELIVERY = 169;
   const total = items.map(i => {
@@ -32,6 +35,7 @@ export function Cart() {
       Authorization: `Bearer ${jwt}`
       }
     });
+    dispatch(cartActions.clean());
     navigate('/success');
   };
 
