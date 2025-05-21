@@ -11,6 +11,12 @@ import { PREFIX } from '../../helpers/API';
 export function Cart() {
   const [cartProducts, setCartProducts ] = useState<Product[]>([]);
   const items = useSelector((s: RootStore) => s.cart.items);
+  const DELIVERY = 169;
+  const total = items.map(i => {
+    const product = cartProducts.find(p => p.id === i.id);
+    if(!product) return 0;
+    return i.count * product.price;
+  }).reduce((acc, i) => acc += i, 0);
 
   useEffect(() => {
     loadAllItems();
@@ -27,7 +33,7 @@ export function Cart() {
     setCartProducts(res);
   };
 
-	return (
+	return ( <>
     <div className={styles.cart}>
       <Headling className={styles.headling}>Корзина</Headling>
       {items.map(i => {
@@ -36,5 +42,20 @@ export function Cart() {
         return <CartItem key={product.id} count={i.count} {...product}/>
       })}
     </div>
+    <div className={styles.line}>
+      <div className={styles.text}>Всего</div>
+      <div className={styles.price}>{total}&nbsp;₽</div>
+    </div>
+    <hr className={styles.hr}/>
+    <div className={styles.line}>
+      <div className={styles.text}>Доставка</div>
+      <div className={styles.price}>{DELIVERY}&nbsp;₽</div>
+    </div>
+    <hr className={styles.hr}/>
+    <div className={styles.line}>
+      <div className={styles.text}>Итог</div>
+      <div className={styles.price}>{ total + DELIVERY}&nbsp;₽</div>
+    </div>
+    </>
 	);
 };
