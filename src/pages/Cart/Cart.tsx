@@ -44,17 +44,17 @@ export function Cart() {
     </div>
     <div className={styles.line}>
       <div className={styles.text}>Всего</div>
-      <div className={styles.price}>{total}&nbsp;₽</div>
+      <div className={styles.price}>{total}&nbsp;<span>₽</span></div>
     </div>
     <hr className={styles.hr}/>
     <div className={styles.line}>
       <div className={styles.text}>Доставка</div>
-      <div className={styles.price}>{DELIVERY}&nbsp;₽</div>
+      <div className={styles.price}>{DELIVERY}&nbsp;<span>₽</span></div>
     </div>
     <hr className={styles.hr}/>
     <div className={styles.line}>
       <div className={styles.text}>Итог</div>
-      <div className={styles.price}>{ total + DELIVERY}&nbsp;₽</div>
+      <div className={styles.price}>{ total + DELIVERY}&nbsp;<span>₽</span></div>
     </div>
     </>
 	);
