@@ -16,6 +16,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
 
 const Menu = lazy(() => import('./pages/Menu/Menu'));
+const Success = lazy(() => import('./pages/Success/Success'));
 
 const router = createBrowserRouter([
 	{
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
 					const { data } = await axios.get(`${PREFIX}/products/${params.id}`);
 					return data;
 				}
+			},
+			{
+				path:'/success' ,
+				element: <Suspense fallback={<>Загрузка...</>}><Success/></Suspense>
 			},
 		]
 	},
