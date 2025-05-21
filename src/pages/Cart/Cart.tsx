@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import type { Product } from '../../interfaces/product.interface';
 import axios from 'axios';
 import { PREFIX } from '../../helpers/API';
+import Button from '../../components/Button/Button';
 
 export function Cart() {
   const [cartProducts, setCartProducts ] = useState<Product[]>([]);
@@ -55,6 +56,9 @@ export function Cart() {
     <div className={styles.line}>
       <div className={styles.text}>Итог</div>
       <div className={styles.price}>{ total + DELIVERY}&nbsp;<span>₽</span></div>
+    </div>
+    <div className={styles.checkout}>
+      <Button appearence='big'>оформить</Button>
     </div>
     </>
 	);
