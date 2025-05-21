@@ -13,8 +13,7 @@ export interface CartState {
 };
 
 // Начальное состояние
-const initialState: CartState = 
-  loadState<CartState>(CART_PERSISTENT_STATE) ?? {
+const initialState: CartState = loadState<CartState>(CART_PERSISTENT_STATE) ?? {
     items: []
   };
 
