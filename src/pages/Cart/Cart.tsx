@@ -8,16 +8,32 @@ import type { Product } from '../../interfaces/product.interface';
 import axios from 'axios';
 import { PREFIX } from '../../helpers/API';
 import Button from '../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 export function Cart() {
   const [cartProducts, setCartProducts ] = useState<Product[]>([]);
   const items = useSelector((s: RootStore) => s.cart.items);
+  const jwt = useSelector((s: RootStore) => s.user.jwt);
+  const navigate = useNavigate();
+  
   const DELIVERY = 169;
   const total = items.map(i => {
     const product = cartProducts.find(p => p.id === i.id);
     if(!product) return 0;
     return i.count * product.price;
   }).reduce((acc, i) => acc += i, 0);
+
+  // Отправка запроса на сервер для оформления покупки
+  const checkout = async () => {
+    await axios.post<Product>(`${PREFIX}/order`, {
+      products: items,
+    },{
+      headers: {
+      Authorization: `Bearer ${jwt}`
+      }
+    });
+    navigate('/success');
+  };
 
   useEffect(() => {
     loadAllItems();
@@ -58,7 +74,7 @@ export function Cart() {
       <div className={styles.price}>{ total + DELIVERY}&nbsp;<span>₽</span></div>
     </div>
     <div className={styles.checkout}>
-      <Button appearence='big'>оформить</Button>
+      <Button appearence='big' onClick={checkout}>Оформить</Button>
     </div>
     </>
 	);
